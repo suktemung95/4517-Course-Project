@@ -16,6 +16,9 @@ def home(request):
     else:
         cards = KnowledgeCard.objects.all()
 
+    for card in cards:
+        print(card.image_url)
+
     return render(request, "home.html", {"cards": cards})
 
 def upload_card(request):
