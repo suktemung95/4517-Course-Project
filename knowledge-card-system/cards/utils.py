@@ -8,7 +8,7 @@ BUCKET_NAME = 'knowledge-cards-bucket'
 def upload_to_s3(file_obj, filename):
     s3.upload_fileobj(file_obj, BUCKET_NAME, filename)
     
-    return f"http://{BUCKET_NAME}.s3.amazonaws.com/{filename}"
+    return f"http://{BUCKET_NAME}.s3.us-east-2.amazonaws.com/{filename}"
 
 def delete_from_s3(filename):
     s3.delete_object(Bucket=BUCKET_NAME, Key=filename)
