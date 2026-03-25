@@ -1,0 +1,8 @@
+<h1>Database Contents</h1>
+
+{% for card in cards %}
+<p>
+  {{ card.title }} | {{ card.description }} | {{ card.histogram|slice:":50"
+  }}...
+</p>
+{% endfor %}

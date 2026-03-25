@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Knowledge Cards</title>
+  </head>
+  <body>
+    <form method="GET">
+      <input type="text" name="q" placeholder="Search..." />
+      <button type="submit">Search</button>
+    </form>
+    <h1>All Knowledge Cards</h1>
+
+    <a href="/upload/">Upload New Card</a>
+    <a href="/image-search/">Image Search</a>
+    <a href="/db/">DB View</a>
+    <hr />
+
+    {% for card in cards %}
+    <div style="margin-bottom: 20px">
+      <h3>{{ card.title }}</h3>
+      <p>{{ card.description }}</p>
+      <img src="{{ card.image_url }}" width="200" />
+    </div>
+    {% empty %}
+    <p>No cards yet.</p>
+    {% endfor %}
+  </body>
+</html>
