@@ -3,10 +3,33 @@ from .models import KnowledgeCard
 from .utils import upload_to_s3
 from .utils import generate_histogram
 from .similarity import compare_image_similarity
+import boto3
+from urllib.parse import urlparse
 
 from io import BytesIO
 
 # Create your views here.
+def delete_card(request, card_id):
+    card = get_object_or_404(KnowledgeCard, id=card_id)
+
+    if request.method == "POST":
+        # Extract file key from URL
+        parsed_url = urlparse(card.image_url)
+        file_key = parsed_url.path.lstrip("/")  # removes leading "/"
+
+        # Delete from S3
+        s3.delete_object(
+            Bucket="your-bucket-name",
+            Key=file_key
+        )
+
+        # Delete from DB
+        card.delete()
+
+        return redirect("/")
+
+    return redirect("/")
+
 def home(request):
     query = request.GET.get('q')
     
