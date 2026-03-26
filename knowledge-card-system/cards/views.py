@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import KnowledgeCard
 from .utils import upload_to_s3
 from .utils import generate_histogram
 from .similarity import compare_image_similarity
 import boto3
 from urllib.parse import urlparse
+
 
 from io import BytesIO
 
